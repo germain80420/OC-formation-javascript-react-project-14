@@ -1,29 +1,29 @@
 import { NavLink } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { DataTable } from "react-datatable-library-bg"
-//import { useState } from "react"
-//import { generateEmployee } from "../../utils/generate"
-//import { useDispatch } from "react-redux"
-// import {
-//   addEmployee,
-//   updateEmployees,
-// } from "../../redux/actions/employeeActions"
+import { useState } from "react"
+import { generateEmployee } from "../../utils/generate"
+import { useDispatch } from "react-redux"
+import {
+  addEmployee,
+  updateEmployees,
+} from "../../redux/actions/employeeActions"
 
 function EmployeesList() {
-  //const [nbEmployees, setNbEmployees] = useState(0)
-  // const dispatch = useDispatch()
+  const [nbEmployees, setNbEmployees] = useState(0)
+  const dispatch = useDispatch()
   let listEmployees
 
-  // const addEmployees = (event) => {
-  //   event.preventDefault()
-  //   for (let i = 0; i < nbEmployees; i++) {
-  //     let employee = generateEmployee(false)
-  //     dispatch(addEmployee({ employee }))
-  //   }
-  // }
-  // const clearEmployees = () => {
-  //   dispatch(updateEmployees([]))
-  // }
+  const addEmployees = (event) => {
+    event.preventDefault()
+    for (let i = 0; i < nbEmployees; i++) {
+      let employee = generateEmployee(false)
+      dispatch(addEmployee({ employee }))
+    }
+  }
+  const clearEmployees = () => {
+    dispatch(updateEmployees([]))
+  }
   listEmployees = useSelector((state) => state.listEmployees)
   const columns = [
     { title: "First Name", data: "firstname" },
@@ -42,7 +42,7 @@ function EmployeesList() {
       <NavLink to="/">Home</NavLink>
       <br />
 
-      {/* <button onClick={clearEmployees}>VIDER LES EMPLOYES</button>
+      <button onClick={clearEmployees}>VIDER LES EMPLOYES</button>
       <form onSubmit={addEmployees}>
         <input
           type="number"
@@ -50,7 +50,7 @@ function EmployeesList() {
           onChange={(e) => setNbEmployees(e.target.value)}
         />
         <input type="submit" value="GENERATE EMPLOYEES" />
-      </form> */}
+      </form>
     </div>
   )
 }
